@@ -1,19 +1,26 @@
 import { test, expect } from '@playwright/test';
+import { SAPFioneerPage } from './pageObjects/SAPFioneerPage';
 
-test('Test 2: go to "Finance & ESG" bookmark', async ({ page }) => {
-    // Step 1: Go to page SAP Fioneer | World-class software solutions for financial services
-    await page.goto('https://www.sapfioneer.com/');
+test('Test 3', async ({ page }) => {
+    const sapFioneerPage = new SAPFioneerPage(page);
+    await sapFioneerPage.navigateToHomePage();
 
-    // Step 2: Go to "Finance & ESG" bookmark
-    const financeESGBookmark = await page.waitForSelector('//*[contains(text(), "Finance & ESG")]');
-    await financeESGBookmark.click();
+    // Closing cookies info window acepting it.
+    await sapFioneerPage.acceptCookies();
 
-    // Step 3: Click on ESG KPI Engine
-    const esgKPIEngineLink = await page.waitForSelector('//*[contains(text(), "ESG KPI Engine")]');
-    await esgKPIEngineLink.click();
+    // Step 2: Click on Get in touch button
+    await sapFioneerPage.clickGetInTouchButton();
 
-    // Step 4: Verify user is in the correct page
-    const expectedUrl = 'https://www.sapfioneer.com/finance-esg/esg-kpi-engine/';
-    expect(page.url()).toBe(expectedUrl);
+    // Step 3: Verify if a user has been redirected to the correct page: SAP Fioneer | Contact | Get in touch!
+    const pageTitle = await sapFioneerPage.getPageTitle();
+    expect(pageTitle).toBe('SAP Fioneer | Contact | Get in touch!');
+
+    // Step 4: In contact form, for Work email field type incorrect email value e.g. 342323
+    await sapFioneerPage.fillWorkEmailField('342323');
+
+    // Step 5: Verify validation message that will appear
+    const validationMessageText = 'Email must be formatted correctly.';
+    const isValidationMessageVisible = await sapFioneerPage.waitForValidationMessage(validationMessageText);
+    expect(isValidationMessageVisible).toBeTruthy();
+    
 });
-

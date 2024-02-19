@@ -1,8 +1,10 @@
+// specFiles/Test1.spec.ts
 import { test, expect } from '@playwright/test';
+import { SAPFioneerPage } from './pageObjects/SAPFioneerPage';
 
 test('Test 1: check the color of a button', async ({ page }) => {
-    // Step 1: Go to page SAP Fioneer | World-class software solutions for financial services
-    await page.goto('https://www.sapfioneer.com/');
+    const sapFioneerPage = new SAPFioneerPage(page);
+    await sapFioneerPage.navigateToHomePage();
 
     // Step 2: Verify Get in touch header button has a yellow color
     const headerButton = await page.$('div.header-button > a.button.primary');
