@@ -43,9 +43,31 @@ To get started with SAP-Fioneer-Challenge, follow these steps:
 
 2. **Customize Test Execution**:
 
-    - **Browser Selection**: Modify the `projects` section in the `playwright.config.js` file to specify different browsers and devices for testing.
-  
-    - **Headless Mode**: Adjust the `headless` option in the `use` section of the `playwright.config.js` file to run tests in headless mode or non-headless mode.
+    - **Browser Selection**: Modify the `projects` section in the `playwright.config.ts` file to specify different browsers for testing. To run the tests on specific browsers, uncomment the corresponding sections in the `playwright.config.ts` file. For example, to run the tests on Chromium, uncomment the relevant section as shown below:
+
+        ```typescript
+        projects: [
+            {
+                name: 'chromium',
+                use: { ...devices['Desktop Chrome'] },
+            },
+            // Uncomment the following section to run tests on Chromium
+            // {
+            //     name: 'firefox',
+            //     use: { ...devices['Desktop Firefox'] },
+            // },
+            // Add additional browser configurations as needed
+        ],
+        ```
+
+    - **Headless Mode**: Adjust the `headless` option in the `use` section of the `playwright.config.ts` file to specify whether the tests should run in headless mode (true) or non-headless mode (false). Headless mode means that the browser will run without a graphical interface. Set the `headless` option to true or false depending on your preference. For example:
+
+        ```typescript
+        use: {
+            /* Other configurations */
+            headless: true, // Set to true for headless mode, false for non-headless mode
+        },
+        ```
 
 3. **View Test Reports**:
 
