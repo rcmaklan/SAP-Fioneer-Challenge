@@ -6,12 +6,10 @@ test('Test 2: go to "Finance & ESG" bookmark', async ({ page }) => {
     await sapFioneerPage.navigateToHomePage();
 
     // Step 2: Go to "Finance & ESG" bookmark
-    await page.waitForSelector('//*[contains(text(), "Finance & ESG")]');
-    await page.click('//*[contains(text(), "Finance & ESG")]');
+    await sapFioneerPage.navigateToBookmark('Finance & ESG');
 
     // Step 3: Click on ESG KPI Engine
-    await page.waitForSelector('//*[contains(text(), "ESG KPI Engine")]');
-    await page.click('//*[contains(text(), "ESG KPI Engine")]');
+    await sapFioneerPage.navigateToBookmark('ESG KPI Engine');
 
     // Step 4: Verify user is in the correct page
     const expectedUrl = 'https://www.sapfioneer.com/finance-esg/esg-kpi-engine/';
