@@ -5,6 +5,7 @@ Three examples of automated tests for the SAP Fioneer Challenge using Playwright
 
 - [Introduction](#introduction)
 - [Installation](#installation)
+- [Folder Structure](#folder-structure)
 - [Usage](#usage)
 
 ## Introduction
@@ -13,7 +14,8 @@ This repository contains a set of automated tests written in the Playwright auto
 
 ## Installation
 
-To get started with SAP-Fioneer-Challenge, follow these steps:
+To get started with SAP-Fioneer-Challenge, you'll need to have Node.js installed and Visual Studio Code on your machine. See requirements on the [official Playwright page](https://playwright.dev/docs/intro#system-requirements). Follow these steps:
+
 
 1. **Clone the Repository**: 
     ```bash
@@ -31,6 +33,15 @@ To get started with SAP-Fioneer-Challenge, follow these steps:
     ```
 
     This command will install all the necessary dependencies, including Playwright and other packages specified in the `package.json` file.
+
+## Folder Structure
+
+After cloning the repository, you'll find the following structure in the `tests` folder:
+
+- **specs files**: Contains the test specification files (`*.spec.ts`). You can create additional test files here to extend the test coverage.
+  
+- **pageObjects folder**: Contains reusable page objects and related methods for interacting with the SAP Fioneer web page. For example, you'll find `SAPFioneerPage.ts`, where you can add more common methods for interacting with SAP Fioneer page.
+
 
 ## Usage
 
